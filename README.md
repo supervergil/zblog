@@ -2,7 +2,7 @@
 
 ## 前言
 
-这个项目是ZBLOG源码，分享出来供大家研究探讨，如果你想在服务器上快速安装ZBLOG博客程序可以用zblog_installer，项目地址为：https://github.com/supervergil/zblog_installer。
+这个项目是ZBLOG源码，分享出来供大家研究探讨，如果你想在服务器上快速安装ZBLOG博客程序可以用zblog_installer，项目地址为：https://github.com/supervergil/zblog_installer 。
 
 ## 使用的框架
 
