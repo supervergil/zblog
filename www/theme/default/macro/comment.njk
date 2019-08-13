@@ -1,0 +1,112 @@
+{% macro list(commentInfo, postDetail) %}
+
+    <div class="comment" zblog-comment data-post-id="{{postDetail.id}}" data-post-token="{{postDetail.token}}">
+        <div class="comment-header">
+            <div class="count">
+                <span class="number">{{commentInfo.count}}</span>
+                <span>条评论</span>
+            </div>
+            <div class="account">
+                {% if not postDetail.allow_comment%}
+                    <span class="closed">本文评论已关闭</span>
+                {% else %}
+                    <span class="unlogin">未登录</span>
+                    <span class="login">
+                        <i class="fa-fw fas fa-exchange-alt exchange-user"></i>
+                        <span class="name">用户</span>
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+        {% if postDetail.allow_comment %}
+            <div class="comment-publish">
+                <a class="avatar">
+                    <img src="/static/images/default-avatar.jpeg"/>
+                </a>
+                <div class="box">
+                    <textarea placeholder=""></textarea>
+                    <div class="markdown" hide></div>
+                    <div class="replyContent" hide>
+                        <span>回复</span>
+                        <a></a>
+                        <span>：</span>
+                        <div></div>
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="tool">
+                    <a class="station">
+                        <i class="fas fa-info-circle fa-fw"></i>
+                        <span>支持 Markdown 语法</span>
+                    </a>
+                    <div class="btns">
+                        <button class="btn btn-default btn-preview">预览</button>
+                        <button class="btn btn-default btn-edit" hide>编辑</button>
+                        <button class="btn btn-comment">
+                            <i class="fas fa-sync-alt fa-fw fa-spin loading"></i>
+                            <span class="unloading">评论</span>
+                            <span class="loading">提交中...</span>
+                        </button>
+                        <button class="btn btn-login">登录</button>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="comment-container">
+            {% for item in commentInfo.data %}
+                <div class="comment-item" id="comment-item-{{item.id}}" data-user-id="{{item.user_id}}" data-user-role="{% if item.is_admin %}admin{% else %}user{% endif %}">
+                    <a class="avatar">
+                        <img src="{% if item.avatar %}{{item.avatar}}{% else %}/static/images/default-avatar.jpeg{% endif %}"/>
+                    </a>
+                    <div class="box">
+                        <div class="content {% if item.is_admin %}admin{% endif %}">
+                            <div class="comment-item-header">
+                                <a class="username">{{item.nick_name}}</a>
+                                <span class="label">发表于</span>
+                                <span class="date">{{item.created_date}}</span>
+                                <a class="icon remove" data-comment-id="{{item.id}}">
+                                    <i class="fas fa-trash-alt fa-fw"></i>
+                                </a>
+                                <a class="icon reply" data-comment-id="{{item.id}}" data-nick-name="{{item.nick_name}}" data-comment-richtext="{{item.richtext}}">
+                                    <i class="fas fa-reply fa-fw"></i>
+                                </a>
+                            </div>
+                            <div class="comment-item-content">
+                                {{item.richtext | safe}}
+                            </div>
+                            {% if item.reply_content %}
+                                <blockquote class="comment-item-reply">
+                                    {% if not item.reply_is_del %}
+                                        <a>@{{item.reply_name}}</a>
+                                        <span>：</span>
+                                    {% endif %}
+                                    <div>
+                                        {{item.reply_content | safe}}
+                                    </div>
+                                </blockquote>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="no-data">
+                    {% if not postDetail.allow_comment%}
+                    暂无评论
+                    {% else %}
+                    暂无评论，来抢个沙发吧！
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        {% if commentInfo.totalPages > 1 %}
+            <div class="comment-loader">
+                <button class="btn btn-load-more">
+                    <i class="fas fa-sync-alt fa-fw fa-spin loading"></i>
+                    <span class="unloading">加载更多</span>
+                    <span class="loading">加载中...</span>
+                </button>
+            </div>
+        {% endif %}
+    </div>
+
+{% endmacro %}

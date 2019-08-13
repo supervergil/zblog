@@ -1,0 +1,61 @@
+<header id="header" class="header">
+    <div class="container header-wrapper">
+        {% if not currentPath.startsWith("/post") %}
+            <h1 class="logo">
+                <a href="{{options.site}}" title="{{options.title}}">{{options.title}}</a>
+            </h1>
+        {% else %}
+            <div class="logo">
+                <a href="{{options.site}}" title="{{options.title}}">{{options.title}}</a>
+            </div>
+        {% endif %}
+        <div class="brand">
+            {{options.sub_title | safe}}
+        </div>
+        <nav class="navigation">
+            <ul>
+                {% for nav in navigation%}
+                    <li class="nav-item{% if activePath === nav.url %} active{% endif %}">
+                        <a href="{{nav.url}}">
+                            <i class="{{nav.icon}}"></i>
+                            <span>{{nav.name}}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <div class="top-menu">
+            {{options.welcome_content | safe}}
+            <ul class="wrapper">
+                {% for nav in subNavigation%}
+                    <li class="menu-item">
+                        <a href="{{nav.url}}" target="_blank">
+                            {% if nav.icon %}
+                                <i class="{{nav.icon}}"></i>
+                            {% endif %}
+                            <span>{{nav.name}}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <a id="mobile-menu-toggler">
+        <i class="fa fa-bars"></i>
+    </a>
+</header>
+
+<div class="navigation-mask" id="navigation-mask"></div>
+
+<div id="mobile-menu">
+    <ul>
+        {% for nav in navigation%}
+            <li class="nav-item{% if activePath === nav.url %} active{% endif %}">
+                <a href="{{nav.url}}">
+                    <i class="{{nav.icon}}"></i>
+                    <span>{{nav.name}}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

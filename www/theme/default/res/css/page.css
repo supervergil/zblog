@@ -1,0 +1,266 @@
+.container > .content-wrap > .content {
+  padding: 0 20px;
+  background-color: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+}
+
+article.page {
+  font-size: 16px;
+  line-height: 1.8;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+article.page p,
+article.page blockquote,
+article.page ul,
+article.page ol,
+article.page dl,
+article.page table,
+article.page iframe,
+article.page h1,
+article.page h2,
+article.page h3,
+article.page h4,
+article.page h5,
+article.page h6,
+article.page pre {
+  margin-top: 15px;
+}
+
+article.page p {
+  color: #666;
+}
+
+article.page img {
+  padding: 0;
+  display: block;
+  border: 1px solid #ccc;
+  margin: 10px 0 5px 0;
+  width: 100%;
+  max-width: 640px;
+}
+
+article.page blockquote {
+  margin: 10px 0 0 0;
+  padding: 15px 20px;
+  border-left: 5px solid #2479cc;
+  background-color: #f8f8f8;
+}
+
+article.page blockquote p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+article.page code {
+  display: inline-block;
+  font-family: "Consolas", "Courier New", Courier, mono, serif;
+  font-size: 80%;
+  margin: 0 2px;
+  margin-top: -3px;
+  padding: 0 5px;
+  background-color: #f2f2f2;
+  vertical-align: middle;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+article.page pre {
+  font-family: "Consolas", "Liberation Mono", Courier, monospace;
+  line-height: 1.6;
+  color: #5d6a6a;
+  border-left: none;
+  padding: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+article.page pre code {
+  font-size: 12px;
+  background-color: #eee;
+  border: 1px solid #eee;
+  padding: 0;
+  line-height: 26px;
+  width: 100%;
+  padding: 6px 12px;
+}
+
+article.page ol {
+  padding: 0;
+  margin-left: 25px;
+}
+
+article.page strong {
+  font-weight: 700;
+}
+
+article.page a {
+  margin: 0 3px;
+  color: #61b3e6;
+}
+
+article.page h1 {
+  margin-top: 30px;
+  margin-bottom: 14px;
+}
+
+article.page .meta {
+  font-size: 14px;
+  color: #999;
+}
+
+article.page .meta > .meta-item {
+  margin-right: 20px;
+}
+
+article.page .toc {
+  float: right;
+  border: 1px solid #e2e2e2;
+  font-size: 14px;
+  margin: 0 0 15px 20px;
+  max-width: 260px;
+  min-width: 120px;
+  padding: 6px;
+  background: #fff;
+}
+
+article.page .toc::before {
+  content: "文章目录";
+  font-weight: bold;
+  border-bottom: 1px solid #e2e2e2;
+  display: block;
+}
+
+article.page .toc:empty {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  article.page .toc {
+    float: none;
+    margin-top: 10px;
+  }
+}
+
+article.page .toc ul {
+  margin-left: 25px;
+  list-style-type: disc;
+}
+
+article.page .toc ul ul {
+  margin-top: 0;
+  list-style-type: circle;
+}
+
+article.page .toc ul ul ul {
+  list-style-type: square;
+}
+
+article.page .toc ul a {
+  color: #61b3e6;
+}
+
+article.page footer > .tag {
+  margin-top: 0 20px;
+  color: #aaa;
+}
+
+article.page footer > .tag > span {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+article.page footer > .tag > a {
+  display: inline-block;
+  padding: 4px 7px 3px;
+  margin: 0 4px 4px 0;
+  color: #fff;
+  font-size: 12px;
+  background-color: #45b6f7;
+  opacity: 0.85;
+}
+
+article.page footer > .tag > a:hover {
+  opacity: 1;
+}
+
+article.page footer > .copyright {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  background-color: #eee;
+  font-size: 13px;
+  padding: 8px 30px;
+  border-radius: 2px;
+  color: #bbb;
+  text-align: center;
+  overflow: hidden;
+  clear: both;
+}
+
+article.page footer > .read-and-like {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+article.page footer > .read-and-like > .read,
+article.page footer > .read-and-like > .like {
+  float: right;
+  margin-bottom: 16px;
+  opacity: 0.8;
+  line-height: 1;
+  border-radius: 2px;
+  color: #ff5e52;
+  font-size: 14px;
+}
+
+article.page footer > .read-and-like > .read {
+  float: left;
+  color: #bbb;
+}
+
+article.page footer > .read-and-like > .like > i {
+  margin-right: 5px;
+}
+
+article.page footer > .read-and-like > .like:hover {
+  opacity: 1;
+}
+
+.article-nav {
+  padding-top: 25px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #bbb;
+  overflow: hidden;
+  border-top: 1px solid #eee;
+}
+
+.article-nav > .prev {
+  float: left;
+  width: 50%;
+}
+
+.article-nav > .next {
+  float: right;
+  width: 50%;
+  text-align: right;
+}
+
+.article-nav a {
+  color: #999;
+}
+
+.article-nav a:hover {
+  color: #45b6f7;
+}

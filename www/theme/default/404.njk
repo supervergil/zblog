@@ -1,0 +1,39 @@
+{% extends "./layout/layout-full.njk" %}
+{# 标题 #}
+{% block title -%}
+  页面不存在-404
+{%- endblock %}
+{# 页面关键词 #}
+{% block meta_keywords -%}
+  404
+{%- endblock %}
+{# 页面描述 #}
+{% block meta_description -%}
+  很抱歉，您要找的页面不存在！
+{%- endblock %}
+{# 头部 #}
+{% block headers -%}
+  <link rel="stylesheet" href="/theme/default/res/css/404.css"/>
+{%- endblock %}
+{# 页面内容 #}
+{% block content %}
+
+  <div class="notFound">
+    <div class="title">404 . Not Found</div>
+    <div class="description">沒有找到你要的内容，请尝试搜索功能！</div>
+  </div>
+
+  <form class="search" action="/search" method="get">
+    <div class="input-group">
+      <input type="text" name="keyword" value="{{keyword}}" class="input-group-input" size="35" placeholder="你可以搜索要找的关键词" maxlength="15" autocomplete="off"/>
+      <span class="input-group-btn">
+        <button class="btn" type="submit">搜索</button>
+      </span>
+    </div>
+  </form>
+
+  <div class="btn-region">
+    <a href="/" class="back-btn">返回首页</a>
+  </div>
+
+{% endblock %}

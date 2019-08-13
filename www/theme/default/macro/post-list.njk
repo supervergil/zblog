@@ -1,0 +1,151 @@
+{% macro list(postInfo, is_search, keyword) %}
+
+    {% if postInfo %}
+
+        <div class="post-list">
+
+            {% for postItem in postInfo.data %}
+                <article class="post-item{% if not postItem.cover_url %} plain{% endif %}">
+                    {% if postItem.cover_url %}
+                        <a class="cover" href="/post/{{postItem.article_path}}.html">
+                            <img src="{{postItem.cover_url}}" alt="{{postItem.title}}" class="thumb"/>
+                        </a>
+                    {% endif %}
+                    <header>
+                        <a class="cat" href="/cate/{{postItem.cate_path}}">
+                            {{postItem.cate_name}}
+                        </a>
+                        <h2>
+                            <a href="/post/{{postItem.article_path}}.html" title="{{postItem.title}}">{{postItem.title}}</a>
+                        </h2>
+                    </header>
+                    <p class="meta">
+                        <time>
+                            <i class="fas fa-clock"></i>
+                            <span>{{postItem.created_date}}</span>
+                        </time>
+                        <span class="pv">
+                            <i class="fa fa-eye"></i>
+                            <span>阅读({{postItem.read_count}})</span>
+                        </span>
+                        <span class="comment">
+                            <i class="fas fa-comments"></i>
+                            <span>评论({{postItem.comment_count}})</span>
+                        </span>
+                        <span class="author">
+                            {% if postItem.type === 0 %}
+                                <i class="fa fa-user"></i>
+                                <span>{{postItem.author_name}}</span>
+                            {% elif postItem.type === 2 %}
+                                <i class="fa fa-share"></i>
+                                <span>{{postItem.reproduce_name}}</span>
+                            {% else %}
+                            {% endif %}
+                        </span>
+                    </p>
+                    <p class="note">{{postItem.summary}}</p>
+                </article>
+            {% endfor %}
+            <div class="pagination">
+                <ul>
+
+                    {% if postInfo.currentPage !== 1 %}
+                        <li class="prev">
+                            <a href="?{{'keyword='+keyword+'&' if is_search else ''}}page={{postInfo.currentPage-1}}">上一页</a>
+                        </li>
+                    {% endif %}
+
+                    {% if postInfo.totalPages <= 7 %}
+                        {% for pageIndex in range(0, postInfo.totalPages) %}
+                            <li {% if pageIndex+1 === postInfo.currentPage  %}class="active"{% endif %} >
+                                {% if pageIndex + 1 === postInfo.currentPage %}
+                                    <span>{{pageIndex+1}}</span>
+                                {% else %}
+                                    <a href="?{{'keyword='+keyword+'&' if is_search else ''}}page={{pageIndex+1}}">{{pageIndex+1}}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        {% if postInfo.currentPage >= 5 %}
+                            <li {% if postInfo.currentPage === 1  %}class="active"{% endif %} >
+                                {% if postInfo.currentPage === 1 %}
+                                    <span>1</span>
+                                {% else %}
+                                    <a href="?{{'keyword='+keyword+'&' if is_search else ''}}page=1">1</a>
+                                {% endif %}
+                            </li>
+                            <li>
+                                <span>...</span>
+                            </li>
+                            {% if postInfo.currentPage + 3 >= postInfo.totalPages %}
+                                {% for pageIndex in range(postInfo.totalPages - 5, postInfo.totalPages) %}
+                                    <li {% if pageIndex+1 === postInfo.currentPage  %}class="active"{% endif %} >
+                                        {% if pageIndex + 1 === postInfo.currentPage %}
+                                            <span>{{pageIndex+1}}</span>
+                                        {% else %}
+                                            <a href="?{{'keyword='+keyword+'&' if is_search else ''}}page={{pageIndex+1}}">{{pageIndex+1}}</a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            {% else %}
+                                {% for pageIndex in range(postInfo.currentPage - 3, postInfo.currentPage + 2) %}
+                                    <li {% if pageIndex+1 === postInfo.currentPage  %}class="active"{% endif %} >
+                                        {% if pageIndex + 1 === postInfo.currentPage %}
+                                            <span>{{pageIndex+1}}</span>
+                                        {% else %}
+                                            <a href="?{{'keyword='+keyword+'&' if is_search else ''}}page={{pageIndex+1}}">{{pageIndex+1}}</a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                                <li>
+                                    <span>...</span>
+                                </li>
+                                <li {% if postInfo.currentPage === postInfo.totalPages  %}class="active"{% endif %} >
+                                    {% if postInfo.currentPage === postInfo.totalPages %}
+                                        <span>{{postInfo.totalPages}}</span>
+                                    {% else %}
+                                        <a href="?{{'keyword='+keyword+'&' if is_search else ''}}page={{postInfo.totalPages}}">{{postInfo.totalPages}}</a>
+                                    {% endif %}
+                                </li>
+                            {% endif %}
+                        {% else %}
+                            {% for pageIndex in range(0, 6) %}
+                                <li {% if pageIndex+1 === postInfo.currentPage  %}class="active"{% endif %} >
+                                    {% if pageIndex + 1 === postInfo.currentPage %}
+                                        <span>{{pageIndex+1}}</span>
+                                    {% else %}
+                                        <a href="?{{'keyword='+keyword+'&' if is_search else ''}}page={{pageIndex+1}}">{{pageIndex+1}}</a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                            <li>
+                                <span>...</span>
+                            </li>
+                            <li {% if postInfo.currentPage === postInfo.totalPages  %}class="active"{% endif %} >
+                                {% if postInfo.currentPage === postInfo.totalPages %}
+                                    <span>{{postInfo.totalPages}}</span>
+                                {% else %}
+                                    <a href="?{{'keyword='+keyword+'&' if is_search else ''}}page={{postInfo.totalPages}}">{{postInfo.totalPages}}</a>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if postInfo.currentPage !== postInfo.totalPages %}
+                        <li class="next">
+                            <a href="?{{'keyword='+keyword+'&' if is_search else ''}}page={{postInfo.currentPage+1}}">下一页</a>
+                        </li>
+                    {% endif %}
+
+                    <li>
+                        <span>共 {{postInfo.totalPages}} 页</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    {% else %}
+        <div>暂无内容！</div>
+    {% endif %}
+
+{% endmacro %}

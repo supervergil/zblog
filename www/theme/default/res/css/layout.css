@@ -1,0 +1,103 @@
+.container {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0;
+}
+
+.container > .content-wrap {
+  float: left;
+  width: 100%;
+}
+
+.container > .content-wrap > .content {
+  position: relative;
+  min-height: 500px;
+  margin-right: 270px;
+  margin-bottom: 15px;
+}
+
+.container > .sidebar {
+  position: relative;
+  float: left;
+  margin-left: -250px;
+  width: 250px;
+}
+
+@media (max-width: 1240px) {
+  .container {
+    padding: 0 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container > .content-wrap > .content {
+    margin-right: 0;
+  }
+  .container > .sidebar {
+    display: none;
+    float: none;
+    width: auto;
+    margin: 15px;
+    clear: both;
+  }
+}
+
+@media (max-width: 640px) {
+  .container > .content-wrap > .content {
+    min-height: 200px;
+  }
+
+  .container {
+    padding: 0 0;
+  }
+}
+
+.published {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.published > h3 {
+  font-size: 20px;
+  margin: 0;
+  float: left;
+  padding: 3px 2px;
+}
+
+.published > .more {
+  float: right;
+  position: relative;
+  top: 5px;
+}
+
+.published > .more > a {
+  display: inline-block;
+  margin-left: 20px;
+  color: #999;
+}
+
+.published > .more > a:hover {
+  color: #45b6f7;
+}
+
+@media (max-width: 640px) {
+  .published {
+    padding-top: 8px;
+    padding-left: 15px;
+    margin-bottom: 5px;
+  }
+  .published > h3 {
+    font-size: 12px;
+    font-weight: normal;
+  }
+  .published > .more {
+    display: none;
+  }
+}

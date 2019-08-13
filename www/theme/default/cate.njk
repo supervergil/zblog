@@ -1,0 +1,31 @@
+{% extends "./layout/layout.njk" %}
+{# 标题 #}
+{% block title -%}
+  {{cateInfo.name}}-{{options.title}}
+{%- endblock %}
+{# 页面关键词 #}
+{% block meta_keywords -%}
+  {{cateInfo.name}}
+{%- endblock %}
+{# 页面描述 #}
+{% block meta_description -%}
+  {{cateInfo.description}}
+{%- endblock %}
+{# 头部 #}
+{% block headers -%}
+  <link rel="stylesheet" href="/theme/default/res/css/tag.css" >
+{%- endblock %}
+{# 页面内容 #}
+{% block content %}
+  <div class="published">
+    <h3>{{cateInfo.name}}</h3>
+  </div>
+
+  {% import "./macro/post-list.njk" as post %}
+  {{ post.list(postInfo) }}
+
+{% endblock %}
+{# 侧边栏 #}
+{% block sidebar %}
+  {{sidebar | safe}}
+{% endblock %}

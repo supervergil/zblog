@@ -1,0 +1,60 @@
+{% extends "./layout/" + pageDetail.layout %}
+{# 标题 #}
+{% block title -%}
+  {{pageDetail.title}}-{{options.title}}
+{%- endblock %}
+{# 页面关键词 #}
+{% block meta_keywords -%}
+  {{ pageDetail.meta_keywords }}
+{%- endblock %}
+{# 页面描述 #}
+{% block meta_description -%}
+  {{pageDetail.meta_description}}
+{%- endblock %}
+{# 头部 #}
+{% block headers -%}
+  <link rel="stylesheet" href="/theme/default/res/css/page.css" >
+  {%- for item in pageDetail.style_list %}
+    <link rel="stylesheet" href="{{item}}" >
+  {%- endfor -%}
+  {%- if pageDetail.style_custom %}
+    <style>
+      {{pageDetail.style_custom | safe}}
+    </style>
+  {% endif %}
+{%- endblock %}
+{# 页面内容 #}
+{% block content %}
+  <article class="page">
+    <header>
+      <h1>{{pageDetail.title}}</h1>
+      <div class="meta">
+        <time class="meta-item">{{pageDetail.created_date}}</time>
+      </div>
+    </header>
+    {{pageDetail.richtext | safe}}
+  </article>
+  {% if pageDetail.allow_comment%}
+    {% import "./macro/comment.njk" as comment %}
+    {{ comment.list(commentInfo,pageDetail) }}
+  {% endif %}
+{% endblock %}
+{# 侧边栏 #}
+{% block sidebar %}
+  {{sidebar | safe}}
+{% endblock %}
+{# 底部脚本 #}
+{% block additional_scripts -%}
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  {%- for item in pageDetail.script_list %}
+    <script src="{{item}}" ></script>
+  {%- endfor -%}
+  {% if pageDetail.script_custom %}
+    <script>
+      {{pageDetail.script_custom | safe}}
+    </script>
+  {% endif %}
+{%- endblock %}

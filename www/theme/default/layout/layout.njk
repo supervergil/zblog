@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="keywords" content="{%- block meta_keywords %}{% endblock -%}">
+    <meta name="description" content="{%- block meta_description %}{% endblock -%}">
+    <title>
+      {%- block title %}{% endblock -%}
+    </title>
+    <link rel="icon" href="{{options.favicon}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap-grid.min.css" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.8.1/css/all.min.css" >
+    <link rel="stylesheet" href="/theme/default/res/css/style.css"/>
+    <link rel="stylesheet" href="/theme/default/res/css/layout.css"/>
+    {%- block headers %}{% endblock -%}
+    {%- if options.custom_style %}
+      <style>
+        {{options.custom_style | safe}}
+      </style>
+    {% endif %}
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/marked@0.6.2/marked.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/nunjucks@3.2.0/browser/nunjucks.js"></script>
+    <script defer src="/theme/default/res/js/zblog.js"></script>
+    <script defer src="/theme/default/res/js/zblog-tool.js"></script>
+    <script defer src="/theme/default/res/js/zblog-header-fixed.js"></script>
+    <script defer src="/theme/default/res/js/zblog-comment.js"></script>
+    {% if options.wechat_enabled %}
+      <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+      <script src="/theme/default/res/js/zblog-wechat.js" data-appid="{{options.wechat_appid}}" data-timestamp="{{options.timestamp}}" data-nonceStr="{{options.nonceStr}}" data-signature="{{options.signature}}"></script>
+    {% endif %}
+  </head>
+  <body>
+    {% include "../common/header.njk" %}
+    <section class="container" id="main-container">
+      <div class="content-wrap">
+        <div class="content">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+      <div class="sidebar">
+        {% block sidebar %}{% endblock %}
+      </div>
+    </section>
+    {% include "../common/footer.njk" %}
+    {%- block additional_scripts %}{% endblock -%}
+    {% if options.calculator_script %}
+      <script>
+        {{options.calculator_script | safe}}
+      </script>
+    {% endif %}
+    {% if options.custom_script %}
+      <script>
+        {{options.custom_script | safe}}
+      </script>
+    {% endif %}
+  </body>
+</html>

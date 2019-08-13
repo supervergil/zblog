@@ -1,0 +1,34 @@
+{% extends "./layout/layout-full.njk" %}
+{# 标题 #}
+{% block title -%}
+  标签列表-{{options.title}}
+{%- endblock %}
+{# 页面关键词 #}
+{% block meta_keywords -%}
+  {{options.keywords}}
+{%- endblock %}
+{# 页面描述 #}
+{% block meta_description -%}
+  {{options.description}}
+{%- endblock %}
+{# 头部 #}
+{% block headers -%}
+  <link rel="stylesheet" href="/theme/default/res/css/tags.css"/>
+{%- endblock %}
+{# 页面内容 #}
+{% block content %}
+  <div class="title">
+  标签云
+</div>
+  <div class="tagList">
+    <ul>
+      {% for tagItem in tagList %}
+        <li>
+          <a class="name" href="/tag/{{tagItem.pathname}}">{{tagItem.name}}</a>
+          <small>×{{tagItem.post_count}}</small>
+          <p>{{tagItem.description}}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

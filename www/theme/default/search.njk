@@ -1,0 +1,47 @@
+{% extends "./layout/layout.njk" %}
+{# 标题 #}
+{% block title -%}
+  站内搜索-{{options.title}}
+{%- endblock %}
+{# 页面关键词 #}
+{% block meta_keywords -%}
+  {{options.keywords}}
+{%- endblock %}
+{# 页面描述 #}
+{% block meta_description -%}
+  {{options.description}}
+{%- endblock %}
+{# 头部 #}
+{% block headers -%}
+  <link rel="stylesheet" href="/theme/default/res/css/search.css" >
+{%- endblock %}
+{# 页面内容 #}
+{% block content %}
+
+  <form class="search" action="/search" method="get">
+    <div class="input-group">
+      <input type="text" name="keyword" value="{{keyword}}" class="input-group-input" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off"/>
+      <span class="input-group-btn">
+        <button class="btn" type="submit">搜索</button>
+      </span>
+    </div>
+  </form>
+
+  <div class="published">
+    <h3>
+      {% if postInfo %}以下是"{{keyword}}"的搜索结果：{% else %}暂无内容！{% endif %}
+    </h3>
+  </div>
+
+  {% if postInfo %}
+
+    {% import "./macro/post-list.njk" as post %}
+    {{ post.list(postInfo,1,keyword) }}
+
+  {% endif %}
+
+{% endblock %}
+{# 侧边栏 #}
+{% block sidebar %}
+  {{sidebar | safe}}
+{% endblock %}

@@ -1,0 +1,69 @@
+{
+  "name": "zblog",
+  "description": "zblog",
+  "version": "1.0.0",
+  "author": "vergil",
+  "scripts": {
+    "start": "node development.js",
+    "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
+    "compile": "babel --no-babelrc src/ --presets think-node,minify --out-dir app/",
+    "lint": "eslint src/",
+    "lint-fix": "eslint --fix src/",
+    "package": "node build.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "crypto-js": "^3.1.9-1",
+    "markdown-toc": "^1.2.0",
+    "marked": "^0.6.2",
+    "nodemailer": "^6.1.1",
+    "qiniu": "^7.2.1",
+    "think-cache": "^1.0.0",
+    "think-cache-file": "^1.0.8",
+    "think-logger3": "^1.0.0",
+    "think-model": "^1.0.0",
+    "think-model-mysql": "^1.0.0",
+    "think-session": "^1.0.0",
+    "think-session-file": "^1.0.5",
+    "think-view": "^1.0.0",
+    "think-view-nunjucks": "^1.0.1",
+    "thinkjs": "^3.0.0",
+    "timeago.js": "^4.0.0-beta.2",
+    "vuex": "^3.1.0"
+  },
+  "devDependencies": {
+    "archiver": "^3.0.0",
+    "ava": "^0.18.0",
+    "babel-cli": "^6.24.1",
+    "babel-minify": "^0.5.0",
+    "babel-preset-think-node": "^1.0.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^4.2.0",
+    "eslint-config-think": "^1.0.0",
+    "fs-extra": "^8.0.1",
+    "node-cmd": "^3.0.0",
+    "node-notifier": "^5.0.2",
+    "nyc": "^7.0.0",
+    "think-babel": "^1.0.3",
+    "think-inspect": "0.0.2",
+    "think-watcher": "^3.0.0"
+  },
+  "repository": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "readmeFilename": "README.md",
+  "thinkjs": {
+    "metadata": {
+      "name": "zblog",
+      "description": "zblog",
+      "author": "vergil",
+      "babel": true
+    },
+    "projectName": "zblog",
+    "template": "/usr/local/lib/node_modules/think-cli/default_template",
+    "clone": false,
+    "isMultiModule": false
+  }
+}

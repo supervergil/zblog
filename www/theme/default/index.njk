@@ -1,0 +1,86 @@
+{% extends "./layout/layout.njk" %}
+{# 标题 #}
+{% block title -%}
+  {{options.title}}
+{%- endblock %}
+{# 页面关键词 #}
+{% block meta_keywords -%}
+  {{options.keywords}}
+{%- endblock %}
+{# 页面描述 #}
+{% block meta_description -%}
+  {{options.description}}
+{%- endblock %}
+{# 头部 #}
+{% block headers -%}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@4.5.0/dist/css/swiper.min.css" >
+  <link rel="stylesheet" href="/theme/default/res/css/index.css" >
+{%- endblock %}
+{# 页面内容 #}
+{% block content %}
+
+  {% if postInfo.currentPage === 1 %}
+    {% if layoutInfo.show_banner == 1 and layoutInfo.banner.length > 0 %}
+      <div class="headlin-wrapper">
+        <div id="headline" class="swiper-container">
+          <div class="swiper-wrapper">
+            {% for item in layoutInfo.banner %}
+              <div class="swiper-slide" style="background: url({{item.cover}});background-size: cover;background-position: center center;">
+                <a href="{{item.url}}" target="_blank">
+                  <div class="banner_title">{{item.title}}</div>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    {% endif %}
+    {% if layoutInfo.show_promotion == 1 %}
+      <article class="promotion">
+        <h2>
+          <span class="red">【{{layoutInfo.promotion_tag}}】</span>
+          <a target="_blank" href="{{layoutInfo.promotion_path}}" title="{{layoutInfo.promotion_title}}" >{{layoutInfo.promotion_title}}</a>
+        </h2>
+        <p class="note">{{layoutInfo.promotion_description}}</p>
+      </article>
+    {% endif %}
+  {% endif %}
+
+  <div class="published">
+    <h3>
+      最新发布
+      {% if postInfo.currentPage > 1 %}
+        <small>第{{postInfo.currentPage}}页</small>
+      {% endif %}
+    </h3>
+    <div class="more">
+      {{options.passage_tag | safe}}
+    </div>
+  </div>
+
+  {% import "./macro/post-list.njk" as post %}
+  {{ post.list(postInfo) }}
+
+{% endblock %}
+{# 侧边栏 #}
+{% block sidebar %}
+  {{sidebar | safe}}
+{% endblock %}
+{# 底部脚本 #}
+{% block additional_scripts -%}
+  <script src="https://cdn.jsdelivr.net/npm/swiper@4.5.0/dist/js/swiper.min.js"></script>
+  <script>
+    var swiper = new Swiper('#headline', {
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '#headline > .swiper-pagination',
+        clickable: true
+      }
+    });
+  </script>
+{%- endblock %}

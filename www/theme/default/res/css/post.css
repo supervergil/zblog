@@ -1,0 +1,266 @@
+.container > .content-wrap > .content {
+  padding: 0 20px;
+  background-color: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+}
+
+article.post {
+  font-size: 16px;
+  line-height: 1.8;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+article.post p,
+article.post blockquote,
+article.post ul,
+article.post ol,
+article.post dl,
+article.post table,
+article.post iframe,
+article.post h1,
+article.post h2,
+article.post h3,
+article.post h4,
+article.post h5,
+article.post h6,
+article.post pre {
+  margin-top: 15px;
+}
+
+article.post p {
+  color: #666;
+}
+
+article.post img {
+  padding: 0;
+  display: block;
+  border: 1px solid #ccc;
+  margin: 10px 0 5px 0;
+  width: 100%;
+  max-width: 640px;
+}
+
+article.post blockquote {
+  margin: 10px 0 0 0;
+  padding: 15px 20px;
+  border-left: 5px solid #2479cc;
+  background-color: #f8f8f8;
+}
+
+article.post blockquote p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+article.post code {
+  display: inline-block;
+  font-family: "Consolas", "Courier New", Courier, mono, serif;
+  font-size: 80%;
+  margin: 0 2px;
+  margin-top: -3px;
+  padding: 0 5px;
+  background-color: #f2f2f2;
+  vertical-align: middle;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+article.post pre {
+  font-family: "Consolas", "Liberation Mono", Courier, monospace;
+  line-height: 1.6;
+  color: #5d6a6a;
+  border-left: none;
+  padding: 0;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+article.post pre code {
+  font-size: 12px;
+  padding: 0;
+  line-height: 26px;
+  width: 100%;
+  padding: 6px 12px;
+}
+
+article.post ol {
+  padding: 0;
+  margin-left: 25px;
+}
+
+article.post strong {
+  font-weight: 700;
+}
+
+article.post a {
+  margin: 0 3px;
+  color: #61b3e6;
+}
+
+article.post h1 {
+  margin-top: 30px;
+  margin-bottom: 14px;
+}
+
+article.post .meta {
+  font-size: 14px;
+  color: #999;
+}
+
+article.post .meta > .meta-item {
+  margin-right: 20px;
+}
+
+article.post .toc {
+  float: right;
+  border: 1px solid #e2e2e2;
+  font-size: 14px;
+  margin: 0 0 15px 20px;
+  max-width: 260px;
+  min-width: 120px;
+  padding: 6px;
+  background: #fff;
+}
+
+article.post .toc::before {
+  content: "文章目录";
+  font-weight: bold;
+  border-bottom: 1px solid #e2e2e2;
+  display: block;
+}
+
+article.post .toc:empty {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  article.post .toc {
+    float: none;
+    margin-top: 10px;
+  }
+}
+
+article.post .toc ul {
+  margin-left: 25px;
+  list-style-type: disc;
+}
+
+article.post .toc ul ul {
+  margin-top: 0;
+  list-style-type: circle;
+}
+
+article.post .toc ul ul ul {
+  list-style-type: square;
+}
+
+article.post .toc ul a {
+  color: #61b3e6;
+}
+
+article.post footer > .tag {
+  margin-top: 0 20px;
+  color: #aaa;
+}
+
+article.post footer > .tag > span {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+article.post footer > .tag > a {
+  display: inline-block;
+  padding: 4px 7px 3px;
+  margin: 0 4px 4px 0;
+  color: #fff;
+  font-size: 12px;
+  background-color: #45b6f7;
+  opacity: 0.85;
+}
+
+article.post footer > .tag > a:hover {
+  opacity: 1;
+}
+
+article.post footer > .copyright {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  background-color: #eee;
+  font-size: 14px;
+  padding: 8px 30px;
+  border-radius: 2px;
+  color: #999;
+  text-align: center;
+  overflow: hidden;
+  clear: both;
+}
+
+article.post footer > .read-and-like {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 0;
+}
+
+article.post footer > .read-and-like > .read,
+article.post footer > .read-and-like > .like {
+  display: inline-block;
+  padding: 12px;
+  margin-bottom: 16px;
+  opacity: 0.8;
+  color: white;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+article.post footer > .read-and-like > .read {
+  background-color: #45b6f7;
+}
+
+article.post footer > .read-and-like > .like {
+  background-color: #ff4400;
+}
+
+article.post footer > .read-and-like > .read:hover,
+article.post footer > .read-and-like > .like:hover {
+  opacity: 1;
+}
+
+.article-nav {
+  padding-top: 25px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  color: #bbb;
+  overflow: hidden;
+  border-top: 1px solid #eee;
+}
+
+.article-nav > .prev {
+  float: left;
+  width: 50%;
+}
+
+.article-nav > .next {
+  float: right;
+  width: 50%;
+  text-align: right;
+}
+
+.article-nav a {
+  color: #999;
+}
+
+.article-nav a:hover {
+  color: #45b6f7;
+}

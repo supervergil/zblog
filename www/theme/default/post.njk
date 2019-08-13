@@ -1,0 +1,208 @@
+{% extends "./layout/layout-post.njk" %}
+{# 标题 #}
+{% block title -%}
+  {{postDetail.title}}-{{options.title}}
+{%- endblock %}
+{# 页面关键词 #}
+{% block meta_keywords -%}
+  {{ postDetail.tags | join(',', 'name') }}
+{%- endblock %}
+{# 页面描述 #}
+{% block meta_description -%}
+  {{postDetail.summary}}
+{%- endblock %}
+{# 头部 #}
+{% block headers -%}
+  <link rel="stylesheet" href="/theme/default/res/css/post.css" >
+{%- endblock %}
+{# 页面内容 #}
+{% block content %}
+  <article class="post">
+    <header>
+      <h1>{{postDetail.title}}</h1>
+      <div class="meta">
+        <time class="meta-item">{{postDetail.created_date}}</time>
+        <span class="meta-item">
+          {% if postDetail.type === 0 %}
+            <span class="label">作者:</span>
+            <span class="value">{{postDetail.author_name}}</span>
+          {% elif postDetail.type === 2 %}
+            <span class="label">转载自:</span>
+            <span class="value">{{postDetail.reproduce_name}}</span>
+          {% else %}
+          {% endif %}
+        </span>
+        <span class="meta-item">
+          <span class="label">分类:</span>
+          <a class="value" href="/cate/{{postDetail.cate_path}}">{{postDetail.cate_name}}</a>
+        </span>
+      </div>
+    </header>
+    {{postDetail.richtext | safe}}
+    <p>（全文完）</p>
+    <footer>
+      {% if postDetail.tags.length > 0 %}
+        <div class="tag">
+          <span>本文标签:</span>
+          {% for tagItem in postDetail.tags %}
+            <a href="/tag/{{tagItem.pathname}}">{{tagItem.name}}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div class="copyright">
+        {% if postDetail.type === 0 %}
+        本文由<a>{{postDetail.author_name}}</a>原创，文章链接：<a title="{{postDetail.title}}" href="/post/{{postDetail.pathname}}.html">{{options.site}}/post/{{postDetail.pathname}}.html</a>，转载请注明出处！
+        {% elif postDetail.type === 2 %}
+        本文转载自<a href="{{postDetail.reproduce_url}}" target="_blank">{{postDetail.reproduce_name}}</a>，转载观点由<a>{{postDetail.author_name}}</a>发表，如有侵权请联系作者删除。
+        {% endif %}
+      </div>
+      <div class="read-and-like">
+        <a class="read">
+          <i class="fa fa-fw fa-eye"></i>
+          <span>阅读 {{postDetail.read_count}}</span>
+        </a>
+        <a class="like">
+          <i class="fa fa-fw fa-thumbs-up"></i>
+          <span>点赞 {{postDetail.like_count}}</span>
+        </a>
+      </div>
+    </footer>
+  </article>
+  <div class="article-nav">
+    {% if postDetail.prevPost.title %}
+      <div class="prev">
+        <div>上一篇</div>
+        <a href="/post/{{postDetail.prevPost.pathname}}.html" rel="prev">{{postDetail.prevPost.title}}</a>
+      </div>
+    {% endif %}
+    {% if postDetail.nextPost.title %}
+      <div class="next">
+        <div>下一篇</div>
+        <a href="/post/{{postDetail.nextPost.pathname}}.html" rel="next">{{postDetail.nextPost.title}}</a>
+      </div>
+    {% endif %}
+  </div>
+  {% import "./macro/comment.njk" as comment %}
+  {{ comment.list(commentInfo,postDetail) }}
+{% endblock %}
+{# 侧边栏 #}
+{% block sidebar %}
+  <div class="widget" id="author">
+    <div class="widget-content">
+      <div class="author">
+        {% if postDetail.type === 0 %}
+          <img class="avatar" src="{{postDetail.author_avatar}}"/>
+          <div class="name">{{postDetail.author_name}}</div>
+          <div class="description">{{postDetail.author_description}}</div>
+          <div class="about">
+            {% if postDetail.author_index %}
+              <a href="{{postDetail.author_index}}" target="_blank">
+                <i class="fas fa-home"></i>
+                <span>主页</span>
+              </a>
+            {% endif %}
+            {% if postDetail.wechat_qrcode %}
+              <a class="wechat">
+                <i class="fab fa-weixin"></i>
+                <span>加微信</span>
+              </a>
+            {% endif %}
+            {% if postDetail.reward_qrcode %}
+              <a class="reward" href="javascript: void(0);">
+                <i class="fas fa-dollar-sign"></i>
+                <span>打赏</span>
+              </a>
+            {% endif %}
+          </div>
+        {% elif postDetail.type === 2 %}
+          <h2 class="point-title">转载观点</h2>
+          <div class="point-of-view">
+            {{postDetail.reproduce_richtext | safe}}
+          </div>
+          <div class="point-source">
+            -- {{postDetail.author_name}}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% if postDetail.wechat_qrcode %}
+    <div class="wechat-qrcode">
+      <img src="{{postDetail.wechat_qrcode}}"/>
+    </div>
+  {% endif %}
+  {% if postDetail.reward_qrcode %}
+    <div class="reward-qrcode">
+      {% if postDetail.reward_title %}
+        <h2>{{postDetail.reward_title}}</h2>
+      {% endif %}
+      <img src="{{postDetail.reward_qrcode}}"/>
+    </div>
+  {% endif %}
+{% endblock %}
+{# 底部脚本 #}
+{% block additional_scripts -%}
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/highlight.min.js"></script>
+  <script>
+    {% if options.wechat_enabled %}
+
+      wx.ready(function () {
+        wx.updateAppMessageShareData({title: '{{postDetail.title}}', desc: '{{postDetail.summary}}', link: '{{options.site}}/post/{{postDetail.pathname}}.html}}', imgUrl: '{{options.site+options.favicon}}', success: function () {}})
+        wx.updateTimelineShareData({title: '{{postDetail.title}}', link: '{{options.site}}/post/{{postDetail.pathname}}.html', imgUrl: '{{options.site+options.favicon}}', success: function () {}})
+      });
+
+    {% endif %}
+
+    hljs.initHighlightingOnLoad();
+
+    var wechatQrcode = document.querySelector(".wechat-qrcode");
+    var rewardQrcode = document.querySelector(".reward-qrcode");
+    var wechatBtn = document.querySelector(".widget .wechat");
+    var rewardBtn = document.querySelector(".widget .reward");
+    var likeBtn = document.querySelector(".read-and-like .like");
+
+    var isUserLogin = !!localStorage.getItem("client-user") && !!localStorage.getItem("client-token");
+
+    if (wechatBtn) {
+      wechatBtn.addEventListener("click", function () {
+        wechatQrcode.style.display = "block";
+      });
+
+      wechatQrcode.addEventListener("click", function () {
+        this.style.display = "none";
+      });
+    }
+
+    if (rewardBtn) {
+      rewardBtn.addEventListener("click", function () {
+        rewardQrcode.style.display = "block";
+      });
+
+      rewardQrcode.addEventListener("click", function () {
+        this.style.display = "none";
+      });
+    }
+
+    likeBtn.addEventListener("click", function () {
+      if (isUserLogin) {
+        var userInfo = JSON.parse(localStorage.getItem("client-user"));
+        zblog
+          .http("post", "/blog/praise/addPraise", {
+            data: {
+              userId: userInfo.id,
+              postId: {{postDetail.id}}
+            },
+            user_id: userInfo.id,
+            token: localStorage.getItem("client-token")
+          })
+          .then(function (resp) {
+            likeBtn
+              .querySelector("span")
+              .innerHTML = "点赞 " + resp.data.data
+          });
+      } else {
+        window.authOpener = window.open("/ucenter#/signin?opener_redirect_url=" + location.href);
+      }
+    });
+  </script>
+{%- endblock %}
