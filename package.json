@@ -15,7 +15,7 @@
     "axios": "^0.18.0",
     "crypto-js": "^3.1.9-1",
     "markdown-toc": "^1.2.0",
-    "marked": "^0.6.2",
+    "marked": "^0.7.0",
     "nodemailer": "^6.1.1",
     "qiniu": "^7.2.1",
     "think-cache": "^1.0.0",
