@@ -42,7 +42,7 @@
     "eslint-config-think": "^1.0.0",
     "fs-extra": "^8.0.1",
     "node-cmd": "^3.0.0",
-    "node-notifier": "^5.0.2",
+    "node-notifier": "^8.0.1",
     "nyc": "^7.0.0",
     "think-babel": "^1.0.3",
     "think-inspect": "0.0.2",
